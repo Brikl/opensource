@@ -1,6 +1,50 @@
 {
   "version": 1,
-  "projects": {},
+  "projects": {
+    "netlify-plugin-next-dynamics": {
+      "root": "libs/netlify-plugin-next-dynamics",
+      "sourceRoot": "libs/netlify-plugin-next-dynamics/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/netlify-plugin-next-dynamics/tsconfig.lib.json",
+              "libs/netlify-plugin-next-dynamics/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/netlify-plugin-next-dynamics/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/netlify-plugin-next-dynamics/jest.config.js",
+            "tsConfig": "libs/netlify-plugin-next-dynamics/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "builder": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/libs/netlify-plugin-next-dynamics",
+            "tsConfig": "libs/netlify-plugin-next-dynamics/tsconfig.lib.json",
+            "packageJson": "libs/netlify-plugin-next-dynamics/package.json",
+            "main": "libs/netlify-plugin-next-dynamics/src/index.ts",
+            "assets": [
+              "libs/netlify-plugin-next-dynamic/*.md",
+              "libs/netlify-plugin-next-dynamic/*.yml"
+            ]
+          }
+        }
+      }
+    }
+  },
   "cli": {
     "defaultCollection": "@nrwl/workspace"
   },

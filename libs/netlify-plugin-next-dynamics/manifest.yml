@@ -1,0 +1,4 @@
+name: netlify-plugin-next-dynamic
+inputs:
+  - name: nextDir
+    description: (Optional) Path to built .next/ directory (i.e. app/.next) (default value will be ../.next of the publish directory)

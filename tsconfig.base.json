@@ -15,7 +15,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "./": ["libs/netlify-plugin-next-dynamics/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
