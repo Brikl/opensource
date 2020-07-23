@@ -2,6 +2,15 @@
 
 Netlify plugin that allows you to deploy dynamic [NextJS](https://nextjs.org) path statically
 
+Demo
+---
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/Brikl/demo-netlify-plugin-next-dynamic)
+
+Example site: [demo-netlify-plugin-next-dynamic.netlify.app](https://demo-netlify-plugin-next-dynamic.netlify.app/)
+
+Build logs: [Netlify CI](https://app.netlify.com/sites/demo-netlify-plugin-next-dynamic/deploys/5f1986636a6fd38c42e29609)
+
 Usage
 -----
 
