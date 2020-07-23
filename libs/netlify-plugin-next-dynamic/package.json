@@ -3,7 +3,7 @@
   "description": "Netlify plugin that allows you to deploy dynamic NextJS path statically",
   "author": "Phumrapee Limpianchop <contact@rayriffy.com>",
   "version": "1.0.6",
-  "homepage": "https://github.com/Brikl/opensource/tree/master/libs/netlify-plugin-next-dynamics#readme",
+  "homepage": "https://github.com/Brikl/opensource/tree/master/libs/netlify-plugin-next-dynamic#readme",
   "bugs": {
     "url": "https://github.com/Brikl/opensource/issues"
   },
@@ -15,6 +15,6 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/Brikl/opensource.git",
-    "directory": "libs/netlify-plugin-next-dynamics"
+    "directory": "libs/netlify-plugin-next-dynamic"
   }
 }

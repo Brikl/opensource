@@ -1,9 +1,9 @@
 {
   "version": 1,
   "projects": {
-    "netlify-plugin-next-dynamics": {
-      "root": "libs/netlify-plugin-next-dynamics",
-      "sourceRoot": "libs/netlify-plugin-next-dynamics/src",
+    "netlify-plugin-next-dynamic": {
+      "root": "libs/netlify-plugin-next-dynamic",
+      "sourceRoot": "libs/netlify-plugin-next-dynamic/src",
       "projectType": "library",
       "schematics": {},
       "architect": {
@@ -12,30 +12,30 @@
           "options": {
             "linter": "eslint",
             "tsConfig": [
-              "libs/netlify-plugin-next-dynamics/tsconfig.lib.json",
-              "libs/netlify-plugin-next-dynamics/tsconfig.spec.json"
+              "libs/netlify-plugin-next-dynamic/tsconfig.lib.json",
+              "libs/netlify-plugin-next-dynamic/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**",
-              "!libs/netlify-plugin-next-dynamics/**/*"
+              "!libs/netlify-plugin-next-dynamic/**/*"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/netlify-plugin-next-dynamics/jest.config.js",
-            "tsConfig": "libs/netlify-plugin-next-dynamics/tsconfig.spec.json",
+            "jestConfig": "libs/netlify-plugin-next-dynamic/jest.config.js",
+            "tsConfig": "libs/netlify-plugin-next-dynamic/tsconfig.spec.json",
             "passWithNoTests": true
           }
         },
         "build": {
           "builder": "@nrwl/node:package",
           "options": {
-            "outputPath": "dist/libs/netlify-plugin-next-dynamics",
-            "tsConfig": "libs/netlify-plugin-next-dynamics/tsconfig.lib.json",
-            "packageJson": "libs/netlify-plugin-next-dynamics/package.json",
-            "main": "libs/netlify-plugin-next-dynamics/src/index.ts",
+            "outputPath": "dist/libs/netlify-plugin-next-dynamic",
+            "tsConfig": "libs/netlify-plugin-next-dynamic/tsconfig.lib.json",
+            "packageJson": "libs/netlify-plugin-next-dynamic/package.json",
+            "main": "libs/netlify-plugin-next-dynamic/src/index.ts",
             "assets": [
               "libs/netlify-plugin-next-dynamic/*.md",
               "libs/netlify-plugin-next-dynamic/*.yml"
