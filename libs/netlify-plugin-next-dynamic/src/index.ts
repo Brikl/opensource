@@ -12,10 +12,6 @@ export const onPostBuild: INetlifyEvent = async ({
   try {
     const { nextDir = path.join(constants.PUBLISH_DIR, '../.next') } = inputs
 
-    if (nextDir === undefined) {
-      throw Error('Required parameter was not fullfilled!')
-    }
-
     await generateRedirects(nextDir, constants.PUBLISH_DIR)
   } catch (error) {
     return utils.build.failPlugin('Plugin failed to execute', {
