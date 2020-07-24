@@ -3,6 +3,8 @@ import * as path from 'path'
 
 import { transformRoute } from './transformRoute'
 
+import { INetlifyPluginOptions } from '../@types/INetlifyPluginOptions'
+
 interface IRouteManifest {
   version: number
   pages404: boolean
@@ -15,10 +17,12 @@ interface IRouteManifest {
   }[]
 }
 
-export const generateRedirects = (
+export const generateRedirects = (opts: INetlifyPluginOptions) => (
   nextDir: string,
   expectedExportPath: string
 ) => {
+  const { utils } = opts
+
   const expectedRouteManifestPath = path.join(nextDir, 'routes-manifest.json')
 
   /**
@@ -26,13 +30,14 @@ export const generateRedirects = (
    */
   console.log('reading route manifest that being generated from next')
   if (!fs.existsSync(expectedRouteManifestPath)) {
-    throw new Error(`cannot locate routes-manifest.json in ${nextDir}`)
+    throw utils.build.failBuild(`cannot locate routes-manifest.json in ${nextDir}`)
   }
 
   const routesManifest: IRouteManifest = JSON.parse(
     fs.readFileSync(expectedRouteManifestPath).toString()
   )
 
+  // Parse routes and transform
   console.log('parsing routes')
   const redirects = routesManifest.dynamicRoutes.map(route => ({
     file: `${route.page}.html`,
@@ -46,8 +51,9 @@ export const generateRedirects = (
   /**
    * Step 2: Generate file
    */
+  // This case is almost impossible because it will normally point to public directory by default
   if (!fs.existsSync(expectedExportPath)) {
-    throw new Error(`cannot locate directory ${expectedExportPath}`)
+    throw utils.build.failBuild(`cannot locate directory ${expectedExportPath}`)
   }
 
   const expectedRedirectFile = path.join(expectedExportPath, '_redirects')
@@ -57,12 +63,16 @@ export const generateRedirects = (
   ].join('\n')
 
   // If file already exists, then append file. Otherwise, create a new file
-  if (fs.existsSync(expectedRedirectFile)) {
-    console.log('appending redirects')
-    fs.appendFileSync(expectedRedirectFile, content)
-  } else {
-    console.log('writing new redirects')
-    fs.writeFileSync(expectedRedirectFile, content)
+  try {
+    if (fs.existsSync(expectedRedirectFile)) {
+      console.log('appending redirects')
+      fs.appendFileSync(expectedRedirectFile, content)
+    } else {
+      console.log('writing new redirects')
+      fs.writeFileSync(expectedRedirectFile, content)
+    }
+  } catch (e) {
+    throw utils.build.failBuild(`unable to write _redirects file in ${expectedExportPath}`)
   }
 
   return true
