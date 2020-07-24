@@ -15,7 +15,7 @@ export type INetlifyPluginOptions = {
   }
   utils: {
     build: {
-      [key in IBuildFailType]: (message: string, options: unknown) => void
+      [key in IBuildFailType]: (message: string, options?: unknown) => void
     }
   }
 }

@@ -4,18 +4,9 @@ import { INetlifyEvent } from './@types/INetlifyEvent'
 
 import * as path from 'path'
 
-export const onPostBuild: INetlifyEvent = async ({
-  constants,
-  inputs,
-  utils,
-}) => {
-  try {
-    const { nextDir = path.join(constants.PUBLISH_DIR, '../.next') } = inputs
+export const onPostBuild: INetlifyEvent = async opts => {
+  const { constants, inputs } = opts
+  const { nextDir = path.join(constants.PUBLISH_DIR, '../.next') } = inputs
 
-    await generateRedirects(nextDir, constants.PUBLISH_DIR)
-  } catch (error) {
-    return utils.build.failPlugin('Plugin failed to execute', {
-      error,
-    })
-  }
+  await generateRedirects(opts)(nextDir, constants.PUBLISH_DIR)
 }
